@@ -12,6 +12,7 @@ jobs:
     steps:
       - name: clone local repository
         uses: actions/checkout@v2
+      - run: echo "${{ secrets.SERVERLESS_YAML }}" > serverless.yaml && ls
       - name: deploy serverless
         uses: woodyyan/tencent-serverless-action@main
         env: # 环境变量
