@@ -6,6 +6,7 @@ import os
 import requests
 import json
 import CloudFlare
+import subprocess
 
 
 # 日志配置
@@ -20,7 +21,7 @@ token = os.getenv("TOKEN", "xxxxxxxx")
 
 
 def main_handler(event, context):
-    os.system(f"./CloudflareST  -o {work_dir}result.csv")
+    subprocess.run(["./CloudflareST", "-o", f"{work_dir}result.csv"])
 
     csv_read = csv.reader(open(f"{work_dir}result.csv"))
 
@@ -156,4 +157,5 @@ def do_dns_update(cf, zone_name, zone_id, dns_name, ip_address, ip_address_type)
     print("CREATED: %s %s" % (dns_name, ip_address))
 
 
-main_handler({}, {})
+if __name__ == "__main__":
+    main_handler({}, {})
