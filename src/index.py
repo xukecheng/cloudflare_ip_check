@@ -20,12 +20,9 @@ token = os.getenv("TOKEN", "xxxxxxxx")
 
 
 def main_handler(event, context):
-    os.system(
-        f"cp ./CloudflareST  {work_dir}CloudflareST  && chmod 755 {work_dir}CloudflareST && chmod +x {work_dir}CloudflareST"
-    )
-    os.system(f"{work_dir}CloudflareST  -o {work_dir}result.csv")
+    os.system(f"./CloudflareST  -o {work_dir}result.csv")
 
-    csv_read = csv.reader(open("src/result.csv"))
+    csv_read = csv.reader(open(f"{work_dir}result.csv"))
 
     index = 0
     for i in csv_read:
