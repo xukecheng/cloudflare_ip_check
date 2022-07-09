@@ -14,14 +14,13 @@ logging.basicConfig(level=logging.INFO, stream=sys.stdout)
 logger = logging.getLogger()
 logger.setLevel(level=logging.INFO)
 
-# 环境变量获取
-work_dir = os.getenv("WORKDIR", "./")
-dns_names = os.getenv("DNSNAMES", "test.domain.com test1.domain.com")
-token = os.getenv("TOKEN", "xxxxxxxx")
+work_dir = "./"
+dns_names = "test.domain.com test1.domain.com"
+token = "xxxxxxxx"
 
 
 def main_handler(event, context):
-    subprocess.run(["./CloudflareST", "-o", f"{work_dir}result.csv"])
+    subprocess.run([f"{work_dir}./CloudflareST", "-o", f"{work_dir}result.csv"])
 
     csv_read = csv.reader(open(f"{work_dir}result.csv"))
 
